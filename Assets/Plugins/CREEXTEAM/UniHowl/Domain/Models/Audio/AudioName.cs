@@ -8,17 +8,17 @@ using UnityEngine;
 public class AudioName : ValueObject
 {
     private static HashSet<char> _notPermitedChars = new(Path.GetInvalidFileNameChars());
-    public string Name { get; private set; }
+    public string Value { get; private set; }
 
-    public AudioName(string name)
+    public AudioName(string value)
     {
-        if (IsLengthValid(name) == false)
+        if (IsLengthValid(value) == false)
             throw new ArgumentException(nameof(IsLengthValid));
 
-        if (IsPathValid(name) == false)
+        if (IsPathValid(value) == false)
             throw new ArgumentException(nameof(IsPathValid));
         
-        Name = name;
+        Value = value;
     }
     
     private bool IsLengthValid(string text)

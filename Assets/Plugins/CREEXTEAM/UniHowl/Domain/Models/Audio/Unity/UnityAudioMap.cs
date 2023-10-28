@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Plugins.CREEXTEAM.UniHowl.Domain.ValueObject;
 using UnityEngine;
 
@@ -45,5 +46,10 @@ public class UnityAudioMap : Entity, IAudioMap<UnityAudio>
     public bool IsExist(string key)
     {
         return _audio.ContainsKey(key);
+    }
+
+    public List<UnityAudio> GetAll()
+    {
+        return _audio.Values.ToList();
     }
 }

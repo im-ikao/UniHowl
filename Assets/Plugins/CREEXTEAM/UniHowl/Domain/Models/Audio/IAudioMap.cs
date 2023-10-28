@@ -11,4 +11,5 @@ public interface IAudioMap<TAudio> : IEntity
     public void Clear();
     public bool IsExist(TAudio audio);
     public bool IsExist(string key);
+    public List<TAudio> GetAll();
 }
