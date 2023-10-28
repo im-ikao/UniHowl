@@ -7,18 +7,22 @@ public static class HowlAudioProxy
 {
     public static void SetGlobalMute(bool state) => HowlGlobalMute(state);
     public static void SetGlobalVolume(float volume)  => HowlGlobalSetVolume(volume);
-    public static void SetVolume(string key, float volume) => HowlSetVolume(key, volume);
-    public static void SetMute(string key, bool state) => HowlMute(key, state);
-    public static void Play(string key) => HowlPlay(key);
-    public static void Stop(string key)  => HowlStop(key);
-    public static float GetPlayTime(string key) => HowlGetPlayTime(key);
-    public static void SetPlayTime(string key, float time) => HowlSetPlayTime(key, time);
-    public static bool IsPlaying(string key) => HowlIsPlaying(key);
-    public static float GetVolume(string soundKey) => HowlGetVolume(soundKey);
-    public static bool GetLoop(string soundKey) => HowlGetLoop(soundKey);
-    public static void SetLoop(string soundKey, bool state)  => HowlSetLoop(soundKey, state);
-    public static bool GetMute(string soundKey) => HowlGetMute(soundKey);
-    
+    public static void SetVolume(string sourceId, float volume) => HowlSetVolume(sourceId, volume);
+    public static void SetMute(string sourceId, bool state) => HowlMute(sourceId, state);
+    public static void Play(string sourceId) => HowlPlay(sourceId);
+    public static void Stop(string sourceId)  => HowlStop(sourceId);
+    public static float GetPlayTime(string sourceId) => HowlGetPlayTime(sourceId);
+    public static void SetPlayTime(string sourceId, float time) => HowlSetPlayTime(sourceId, time);
+    public static bool IsPlaying(string sourceId) => HowlIsPlaying(sourceId);
+    public static float GetVolume(string sourceId) => HowlGetVolume(sourceId);
+    public static bool GetLoop(string sourceId) => HowlGetLoop(sourceId);
+    public static void SetLoop(string sourceId, bool state)  => HowlSetLoop(sourceId, state);
+    public static bool GetMute(string sourceId) => HowlGetMute(sourceId);
+    public static void SetSound(string sourceId, string key)
+    {
+        
+    }
+
 
     #region JavaScript External
     
@@ -29,37 +33,37 @@ public static class HowlAudioProxy
     public static extern void HowlGlobalSetVolume(float volume);
         
     [DllImport("__Internal")]
-    public static extern void HowlSetVolume(string key, float value);
+    public static extern void HowlSetVolume(string sourceId, float value);
         
     [DllImport("__Internal")]
-    public static extern void HowlMute(string key, bool value);
+    public static extern void HowlMute(string sourceId, bool value);
         
     [DllImport("__Internal")]
-    public static extern void HowlStop(string key);
+    public static extern void HowlStop(string sourceId);
         
     [DllImport("__Internal")]
-    public static extern void HowlPlay(string key);
+    public static extern void HowlPlay(string sourceId);
         
     [DllImport("__Internal")]
-    public static extern float HowlGetPlayTime(string key);
+    public static extern float HowlGetPlayTime(string sourceId);
     
     [DllImport("__Internal")]
-    public static extern void HowlSetPlayTime(string key, float value);
+    public static extern void HowlSetPlayTime(string sourceId, float value);
     
     [DllImport("__Internal")]
-    public static extern bool HowlIsPlaying(string key);
+    public static extern bool HowlIsPlaying(string sourceId);
     
     [DllImport("__Internal")]
-    public static extern float HowlGetVolume(string soundKey);
+    public static extern float HowlGetVolume(string soundSourceId);
     
     [DllImport("__Internal")]
-    public static extern bool HowlGetLoop(string soundKey);
+    public static extern bool HowlGetLoop(string soundSourceId);
     
     [DllImport("__Internal")]
-    public static extern void HowlSetLoop(string soundKey, bool state);
+    public static extern void HowlSetLoop(string soundSourceId, bool state);
     
     [DllImport("__Internal")]
-    public static extern bool HowlGetMute(string soundKey);
+    public static extern bool HowlGetMute(string soundSourceId);
     
     #endregion
 

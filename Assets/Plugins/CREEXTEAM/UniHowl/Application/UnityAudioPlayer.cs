@@ -1,4 +1,4 @@
-using System;
+using System;using Plugins.CREEXTEAM.UniHowl.Domain.ValueObject;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,71 +13,71 @@ public class UnityAudioPlayer : IAudioPlayer
         _source = source;
         
         SetSound(key);
-        SetMute(key, mute);
-        SetVolume(key, volume);
+        SetMute(mute);
+        SetVolume(volume);
     }
 
     public void SetGlobalMute(bool state)
     {
-        throw new NotImplementedException();
+        AudioListener.pause = state;
     }
 
     public void SetGlobalVolume(float volume)
     {
-        throw new NotImplementedException();
+        AudioListener.volume = volume;
     }
 
-    public void SetVolume(string key, float volume)
+    public void SetVolume(float volume)
     {
         _source.volume = volume;
     }
 
-    public void SetMute(string key, bool state)
+    public void SetMute(bool state)
     {
         _source.mute = state;
     }
 
-    public void Play(string key)
+    public void Play()
     {
         _source.Play();
     }
 
-    public void Stop(string key)
+    public void Stop()
     {
         _source.Stop();
     }
 
-    public float GetPlayTime(string key)
+    public float GetPlayTime()
     {
         return _source.time;
     }
 
-    public void SetPlayTime(string key, float time)
+    public void SetPlayTime(float time)
     {
         _source.time = time;
     }
 
-    public bool IsPlaying(string key)
+    public bool IsPlaying()
     {
         return _source.isPlaying;
     }
     
-    public float GetVolume(string soundKey)
+    public float GetVolume()
     {
         return _source.volume;
     }
 
-    public bool GetMute(string soundKey)
+    public bool GetMute()
     {
         return _source.mute;
     }
 
-    public void SetLoop(string soundKey, bool value)
+    public void SetLoop(bool value)
     {
         _source.loop = value;
     }
 
-    public bool GetLoop(string soundKey)
+    public bool GetLoop()
     {
         return _source.loop;
     }

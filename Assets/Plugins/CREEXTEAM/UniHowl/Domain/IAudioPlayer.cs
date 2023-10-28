@@ -6,16 +6,16 @@ public interface IAudioPlayer
 {
     public void SetGlobalMute(bool state);
     public void SetGlobalVolume(float volume);
-    public void SetVolume(string key, float volume);
-    public void SetMute(string key, bool state);
-    public void Play(string key);
-    public void Stop(string key);
-    public float GetPlayTime(string key);
-    public void SetPlayTime(string key, float time);
-    public bool IsPlaying(string key);
-    public float GetVolume(string soundKey);
-    public bool GetMute(string soundKey);
-    public void SetLoop(string soundKey, bool value);
-    public bool GetLoop(string soundKey);
-    public void SetSound(string soundKey);
+    public void SetVolume(float volume);
+    public void SetMute(bool state);
+    public void Play();
+    public void Stop();
+    public float GetPlayTime();
+    public void SetPlayTime(float time);
+    public bool IsPlaying();
+    public float GetVolume();
+    public bool GetMute();
+    public void SetLoop(bool value);
+    public bool GetLoop();
+    public void SetSound(string key);
 }

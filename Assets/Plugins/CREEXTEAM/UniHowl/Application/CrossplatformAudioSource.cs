@@ -25,28 +25,28 @@ public class CrossplatformAudioSource : MonoBehaviour
         get => _volume;
         set
         {
-            _volume = _player.GetVolume(_soundKey);
-            _player.SetVolume(_soundKey, value);
+            _volume = _player.GetVolume();
+            _player.SetVolume( value);
         }
     }
     
     public bool Mute
     {
-        get => _player.GetMute(_soundKey);
+        get => _player.GetMute();
         set
         {
             _loop = value;
-            _player.SetMute(_soundKey, value);
+            _player.SetMute(value);
         }
     }
 
     public bool Loop
     {
-        get => _player.GetLoop(_soundKey);
+        get => _player.GetLoop();
         set
         {
             _loop = value;
-            _player.SetLoop(_soundKey, value);
+            _player.SetLoop(value);
         }
     }
 
@@ -115,11 +115,11 @@ public class CrossplatformAudioSource : MonoBehaviour
 
     public void Play()
     {
-        _player.Play(_soundKey);
+        _player.Play();
     }
 
     public void Stop()
     {
-        _player.Stop(_soundKey);
+        _player.Stop();
     }
 }
