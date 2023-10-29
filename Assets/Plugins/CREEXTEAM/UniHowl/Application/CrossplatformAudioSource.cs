@@ -98,7 +98,11 @@ public class CrossplatformAudioSource : MonoBehaviour
         _player = _fallbackPlayer switch
         {
 #if UNITY_WEBGL
-            AudioPlayers.Howl => new HowlAudioPlayer(configuration.Audio.ToHowlAudioMap()),
+            AudioPlayers.Howl => new HowlAudioPlayer(configuration.Audio.ToHowlAudioMap(), 
+                _soundKey,
+                _volume,
+                _mute,
+                _loop),
 #endif
 #if !UNITY_WEBGL || UNITY_EDITOR
             AudioPlayers.Unity => new UnityAudioPlayer(configuration.Audio.ToUnityAudioMap(), 

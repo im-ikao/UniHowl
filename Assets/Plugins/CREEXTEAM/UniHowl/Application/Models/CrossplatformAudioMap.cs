@@ -37,7 +37,6 @@ public class CrossplatformAudioMap : ScriptableObject
 
         return map;
     }
-#endif
 
     public void OnValidate()
     {
@@ -46,4 +45,5 @@ public class CrossplatformAudioMap : ScriptableObject
             audio.RefreshAudioInfo();
         }
     }
+#endif
 }

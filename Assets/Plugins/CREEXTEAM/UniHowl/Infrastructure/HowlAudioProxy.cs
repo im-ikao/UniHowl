@@ -18,14 +18,18 @@ public static class HowlAudioProxy
     public static bool GetLoop(string sourceId) => HowlGetLoop(sourceId);
     public static void SetLoop(string sourceId, bool state)  => HowlSetLoop(sourceId, state);
     public static bool GetMute(string sourceId) => HowlGetMute(sourceId);
-    public static void SetSound(string sourceId, string key)
-    {
-        
-    }
+    public static void SetSound(string sourceId, string path) => HowlSetSound(sourceId, path);
+    public static void CreateAudio(string sourceId, string path, bool loop, float volume, bool mute, bool playOnAwake) => HowlCreateAudio(sourceId, path, loop, volume, mute, playOnAwake);
 
 
     #region JavaScript External
     
+    [DllImport("__Internal")]
+    public static extern bool HowlCreateAudio(string sourceId, string path, bool loop, float volume, bool mute, bool playOnAwake);
+        
+    [DllImport("__Internal")]
+    public static extern bool HowlSetSound(string sourceId, string path);
+
     [DllImport("__Internal")]
     public static extern void HowlGlobalMute(bool state);
         

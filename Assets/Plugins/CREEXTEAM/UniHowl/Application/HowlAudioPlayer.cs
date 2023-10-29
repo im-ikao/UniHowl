@@ -6,13 +6,20 @@ using UnityEngine;
 
 public sealed class HowlAudioPlayer : Entity<Guid>, IAudioPlayer
 {
-    public HowlAudioPlayer(IAudioMap<HowlAudio> map)
+    public HowlAudioPlayer(IAudioMap<HowlAudio> map, string key, float volume, bool mute, bool loop)
     {
         Id = Guid.NewGuid();
         _id = Id.ToString();
+
+        if (map.IsExist(key) == false)
+            throw new ArgumentException(nameof(HowlAudioPlayer));
+        
+        var audio = map.Get(key);
+        
+        HowlAudioProxy.CreateAudio(_id, audio.Path.FolderPath, loop, volume, mute, false);
     }
 
-    private string _id;
+    private readonly string _id;
     
     public void SetGlobalMute(bool state) => HowlAudioProxy.SetGlobalMute(state);
     public void SetGlobalVolume(float volume) => HowlAudioProxy.SetGlobalVolume(volume);
