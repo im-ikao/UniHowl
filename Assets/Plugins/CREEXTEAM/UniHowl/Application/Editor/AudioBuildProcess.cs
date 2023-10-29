@@ -20,7 +20,7 @@ public static class AudioBuildProcess
         var howlerMap = map.ToHowlAudioMap();
 
         var audioFolder = "StreamingAssets/Audio";
-        Directory.Delete(pathToBuildProject + "/" + audioFolder);
+        Directory.Delete(pathToBuildProject + "/" + audioFolder, true);
 
         CreateFolder(pathToBuildProject, audioFolder);
 
@@ -35,8 +35,8 @@ public static class AudioBuildProcess
 
             CreateFolder(rootPath, data.Path.FolderPath);
 
-            var assetDataPath = Application.dataPath + @"\" + data.Path.FolderPath + data.Name;
-            var newDataPath = rootPath + @"\" + data.Path.FolderPath + data.Name;
+            var assetDataPath = Application.dataPath + @"\" + data.Path.FolderPath + data.Name.Value;
+            var newDataPath = rootPath + @"\" + data.Path.FolderPath + data.Name.Value;
 
             assetDataPath = assetDataPath.Replace(@"\", "/");
             newDataPath = newDataPath.Replace(@"\", "/");

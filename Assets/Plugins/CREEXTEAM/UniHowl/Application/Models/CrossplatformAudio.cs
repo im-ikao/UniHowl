@@ -27,6 +27,8 @@ public class CrossplatformAudio
         
         Name = Path.GetFileName(assetPath);
         FolderPath = Path.GetRelativePath("Assets", assetPath);
+        FolderPath = FolderPath.Remove(FolderPath.Length - Name.Length, Name.Length);
+
     }
 #endif
     
