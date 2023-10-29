@@ -1,33 +1,34 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEngine;
 
-public class AudioName : ValueObject
+namespace UniHowl.Domain
 {
-    private static HashSet<char> _notPermitedChars = new(Path.GetInvalidFileNameChars());
-    public string Value { get; private set; }
-
-    public AudioName(string value)
+    public class AudioName : ValueObject
     {
-        if (IsLengthValid(value) == false)
-            throw new ArgumentException(nameof(IsLengthValid));
+        private static HashSet<char> _notPermitedChars = new(Path.GetInvalidFileNameChars());
+        public string Value { get; private set; }
 
-        if (IsPathValid(value) == false)
-            throw new ArgumentException(nameof(IsPathValid));
-        
-        Value = value;
-    }
-    
-    private bool IsLengthValid(string text)
-    {
-        return text.Length < 72;
-    }
+        public AudioName(string value)
+        {
+            if (IsLengthValid(value) == false)
+                throw new ArgumentException(nameof(IsLengthValid));
 
-    private bool IsPathValid(string text)
-    {
-        return text.Any(ch => _notPermitedChars.Contains(ch)) == false;
+            if (IsPathValid(value) == false)
+                throw new ArgumentException(nameof(IsPathValid));
+
+            Value = value;
+        }
+
+        private bool IsLengthValid(string text)
+        {
+            return text.Length < 72;
+        }
+
+        private bool IsPathValid(string text)
+        {
+            return text.Any(ch => _notPermitedChars.Contains(ch)) == false;
+        }
     }
 }

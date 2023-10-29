@@ -1,133 +1,132 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Plugins.CREEXTEAM.UniHowl.Application;
+using UniHowl.Domain;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Serialization;
 
-public class CrossplatformAudioSource : MonoBehaviour
+namespace UniHowl
 {
-    [SerializeField] private AudioPlayers _fallbackPlayer = AudioPlayers.Howl;
-
-    [SerializeField] private string _soundKey;
-    
-    [SerializeField] private float _volume;
-    [SerializeField] private bool _loop;
-    [SerializeField] private bool _mute;
-    
-    private IAudioPlayer _player;
-
-    #region InGameChange
-
-    public float Volume
+    public class CrossplatformAudioSource : MonoBehaviour
     {
-        get => _volume;
-        set
-        {
-            _volume = _player.GetVolume();
-            _player.SetVolume( value);
-        }
-    }
-    
-    public bool Mute
-    {
-        get => _player.GetMute();
-        set
-        {
-            _loop = value;
-            _player.SetMute(value);
-        }
-    }
+        [SerializeField] private AudioPlayers _fallbackPlayer = AudioPlayers.Howl;
 
-    public bool Loop
-    {
-        get => _player.GetLoop();
-        set
-        {
-            _loop = value;
-            _player.SetLoop(value);
-        }
-    }
+        [SerializeField] private string _soundKey;
 
-    public string SoundKey
-    {
-        get => _soundKey;
-        set
-        {
-            _soundKey = value;
-            _player.SetSound(value);
-        }
-    }
+        [SerializeField] private float _volume;
+        [SerializeField] private bool _loop;
+        [SerializeField] private bool _mute;
 
-    #endregion
+        private IAudioPlayer _player;
+
+        #region InGameChange
+
+        public float Volume
+        {
+            get => _volume;
+            set
+            {
+                _volume = _player.GetVolume();
+                _player.SetVolume(value);
+            }
+        }
+
+        public bool Mute
+        {
+            get => _player.GetMute();
+            set
+            {
+                _loop = value;
+                _player.SetMute(value);
+            }
+        }
+
+        public bool Loop
+        {
+            get => _player.GetLoop();
+            set
+            {
+                _loop = value;
+                _player.SetLoop(value);
+            }
+        }
+
+        public string SoundKey
+        {
+            get => _soundKey;
+            set
+            {
+                _soundKey = value;
+                _player.SetSound(value);
+            }
+        }
+
+        #endregion
 
 #if !UNITY_WEBGL || UNITY_EDITOR
-    public void OnValidate()
-    {
-        if (_player == null)
-            return;
+        public void OnValidate()
+        {
+            if (_player == null)
+                return;
 
-        Volume = _volume;
-        Mute = _mute;
-        Loop = _loop;
-        SoundKey = _soundKey;
-    } 
+            Volume = _volume;
+            Mute = _mute;
+            Loop = _loop;
+            SoundKey = _soundKey;
+        }
 #endif
 
-    private void Awake()
-    {
-        Init(AudioConfiguration.GetInstance()); // TODO: FOR USERS WHAT NEED DI, CAN MAKE IT BY DI
-    }
-
-    private void Init(AudioConfiguration configuration)
-    {
-        // TOOD: EJECT TO STRATEGY?
-        // TODO: SETUP BY CURRENT AUDIO SOURCE?
-        
-        if (Application.isEditor && configuration.Debug)
+        private void Awake()
         {
-            #if UNITY_EDITOR
-            _player = new UnityAudioPlayer(configuration.Audio.ToUnityAudioMap(),
-                this.gameObject.AddComponent<AudioSource>(), _soundKey, _volume, _mute, _loop);
-            #endif
-            
-            return;
+            Init(AudioConfiguration.GetInstance()); // TODO: FOR USERS WHAT NEED DI, CAN MAKE IT BY DI
         }
-            
-        _player = _fallbackPlayer switch
+
+        private void Init(AudioConfiguration configuration)
         {
+            // TOOD: EJECT TO STRATEGY?
+            // TODO: SETUP BY CURRENT AUDIO SOURCE?
+
+            if (Application.isEditor && configuration.Debug)
+            {
+#if UNITY_EDITOR
+                _player = new UnityAudioPlayer(configuration.Audio.ToUnityAudioMap(),
+                    this.gameObject.AddComponent<AudioSource>(), _soundKey, _volume, _mute, _loop);
+#endif
+
+                return;
+            }
+
+            _player = _fallbackPlayer switch
+            {
 #if UNITY_WEBGL
-            AudioPlayers.Howl => new HowlAudioPlayer(configuration.Audio.ToHowlAudioMap(), 
-                _soundKey,
-                _volume,
-                _mute,
-                _loop),
+                AudioPlayers.Howl => new HowlAudioPlayer(configuration.Audio.ToHowlAudioMap(),
+                    _soundKey,
+                    _volume,
+                    _mute,
+                    _loop),
 #endif
 #if !UNITY_WEBGL || UNITY_EDITOR
-            AudioPlayers.Unity => new UnityAudioPlayer(configuration.Audio.ToUnityAudioMap(), 
-                this.gameObject.AddComponent<AudioSource>(),
-                _soundKey,
-                _volume,
-                _mute,
-                _loop),
+                AudioPlayers.Unity => new UnityAudioPlayer(configuration.Audio.ToUnityAudioMap(),
+                    this.gameObject.AddComponent<AudioSource>(),
+                    _soundKey,
+                    _volume,
+                    _mute,
+                    _loop),
 #endif
-            _ => throw new ArgumentOutOfRangeException(nameof(_fallbackPlayer))
-        };
-        
-    }
+                _ => throw new ArgumentOutOfRangeException(nameof(_fallbackPlayer))
+            };
 
-    public void Play()
-    {
-        _player.Play();
-    }
+        }
 
-    public void Stop()
-    {
-        _player.Stop();
-    }
+        public void Play()
+        {
+            _player.Play();
+        }
 
-    public void Load() => _player.Load();
-    public void SetGlobalMute(bool state) => _player.SetGlobalMute(state);
-    public void SetGlobalVolume(float volume) => _player.SetGlobalVolume(volume);
+        public void Stop()
+        {
+            _player.Stop();
+        }
+
+        public void Load() => _player.Load();
+        public void SetGlobalMute(bool state) => _player.SetGlobalMute(state);
+        public void SetGlobalVolume(float volume) => _player.SetGlobalVolume(volume);
+    }
 }

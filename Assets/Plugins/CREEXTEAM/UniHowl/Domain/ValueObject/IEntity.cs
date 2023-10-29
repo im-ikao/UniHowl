@@ -1,4 +1,4 @@
-﻿namespace Plugins.CREEXTEAM.UniHowl.Domain.ValueObject
+﻿namespace UniHowl.Domain
 {
     public interface IEntity : IEntity<int>
     {

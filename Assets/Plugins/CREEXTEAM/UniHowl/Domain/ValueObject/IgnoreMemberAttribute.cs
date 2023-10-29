@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Plugins.CREEXTEAM.UniHowl.Domain.ValueObject
+namespace UniHowl.Domain
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class IgnoreMemberAttribute : Attribute

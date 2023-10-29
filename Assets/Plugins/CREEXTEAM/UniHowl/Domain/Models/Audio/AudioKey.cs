@@ -3,30 +3,33 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-// TODO: TEMPORARY PATH PERMITED CHARS
-public class AudioKey : ValueObject
+namespace UniHowl.Domain
 {
-    private static HashSet<char> _notPermitedChars = new(Path.GetInvalidFileNameChars());
-    public string Value { get; private set; }
-
-    public AudioKey(string value)
+// TODO: TEMPORARY PATH PERMITED CHARS
+    public class AudioKey : ValueObject
     {
-        if (IsLengthValid(value) == false)
-            throw new ArgumentException(nameof(IsLengthValid));
+        private static HashSet<char> _notPermitedChars = new(Path.GetInvalidFileNameChars());
+        public string Value { get; private set; }
 
-        if (IsPathValid(value) == false)
-            throw new ArgumentException(nameof(IsPathValid));
-        
-        Value = value;
-    }
-    
-    private bool IsLengthValid(string text)
-    {
-        return text.Length < 42;
-    }
+        public AudioKey(string value)
+        {
+            if (IsLengthValid(value) == false)
+                throw new ArgumentException(nameof(IsLengthValid));
 
-    private bool IsPathValid(string text)
-    {
-        return text.Any(ch => _notPermitedChars.Contains(ch)) == false;
+            if (IsPathValid(value) == false)
+                throw new ArgumentException(nameof(IsPathValid));
+
+            Value = value;
+        }
+
+        private bool IsLengthValid(string text)
+        {
+            return text.Length < 42;
+        }
+
+        private bool IsPathValid(string text)
+        {
+            return text.Any(ch => _notPermitedChars.Contains(ch)) == false;
+        }
     }
 }

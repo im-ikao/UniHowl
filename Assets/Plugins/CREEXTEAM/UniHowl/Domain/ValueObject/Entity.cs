@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Plugins.CREEXTEAM.UniHowl.Domain.ValueObject
+namespace UniHowl.Domain
 {
      /// <summary>
     /// A shortcut of <see cref="Entity{TPrimaryKey}"/> for most used primary key type (<see cref="int"/>).

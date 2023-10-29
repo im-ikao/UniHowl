@@ -1,4 +1,4 @@
-﻿namespace Plugins.CREEXTEAM.UniHowl.Application
+﻿namespace UniHowl
 {
     public enum AudioPlayers
     {

@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Plugins.CREEXTEAM.UniHowl.Domain.ValueObject;
 
-public abstract class ValueObject : IEquatable<ValueObject>
+namespace UniHowl.Domain
+{
+    public abstract class ValueObject : IEquatable<ValueObject>
     {
         private List<PropertyInfo> properties;
         private List<FieldInfo> fields;
@@ -17,8 +18,10 @@ public abstract class ValueObject : IEquatable<ValueObject>
                 {
                     return true;
                 }
+
                 return false;
             }
+
             return obj1.Equals(obj2);
         }
 
@@ -35,13 +38,13 @@ public abstract class ValueObject : IEquatable<ValueObject>
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType()) return false;
-            
+
             return GetProperties().All(p => PropertiesAreEqual(obj, p))
-                && GetFields().All(f => FieldsAreEqual(obj, f));
+                   && GetFields().All(f => FieldsAreEqual(obj, f));
         }
 
         private bool PropertiesAreEqual(object obj, PropertyInfo p)
-        {       
+        {
             return object.Equals(p.GetValue(this, null), p.GetValue(obj, null));
         }
 
@@ -74,16 +77,16 @@ public abstract class ValueObject : IEquatable<ValueObject>
 
         public override int GetHashCode()
         {
-            unchecked   //allow overflow
+            unchecked //allow overflow
             {
                 int hash = 17;
                 foreach (var prop in GetProperties())
-                {   
+                {
                     var value = prop.GetValue(this, null);
                     hash = HashValue(hash, value);
                 }
 
-                foreach(var field in GetFields())
+                foreach (var field in GetFields())
                 {
                     var value = field.GetValue(this);
                     hash = HashValue(hash, value);
@@ -102,3 +105,4 @@ public abstract class ValueObject : IEquatable<ValueObject>
             return seed * 23 + currentHash;
         }
     }
+}
