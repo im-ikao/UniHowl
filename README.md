@@ -1,5 +1,5 @@
-# UniHowl
-UniHowl - Web Audio made be Easy, Web Audio API, Howler.js
+# UniHowl - Unity
+UniHowl - Unity - Web Audio made be Easy, Web Audio API, Howler.js
 
 ![UniHowl Cover](https://creex.team/assets/images/unihowl.jpg)
 
