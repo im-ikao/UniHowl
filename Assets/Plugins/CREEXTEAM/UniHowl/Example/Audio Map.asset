@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aad1393dafc6194881f2025c657d36f, type: 3}
+  m_Name: Audio Map
+  m_EditorClassIdentifier: 
+  _audio:
+  - Key: example-key
+    Clip: {fileID: 8300000, guid: 06d2b2cc5f6cd1e499755e24e3915d4c, type: 3}
+    Preload: 1
+    FolderPath: Plugins\CREEXTEAM\UniHowl\Example\Audio\
+    Name: Example.ogg
