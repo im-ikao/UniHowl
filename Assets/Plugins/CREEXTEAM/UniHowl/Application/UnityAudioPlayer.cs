@@ -91,4 +91,6 @@ public class UnityAudioPlayer : IAudioPlayer
 
         _source.clip = audio.Clip;
     }
+
+    public void Load() { }
 }

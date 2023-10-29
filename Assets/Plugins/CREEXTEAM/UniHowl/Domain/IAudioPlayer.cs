@@ -18,4 +18,5 @@ public interface IAudioPlayer
     public void SetLoop(bool value);
     public bool GetLoop();
     public void SetSound(string key);
+    public void Load();
 }

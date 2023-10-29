@@ -35,4 +35,5 @@ public sealed class HowlAudioPlayer : Entity<Guid>, IAudioPlayer
     public void SetLoop(bool state) => HowlAudioProxy.SetLoop(_id, state);
     public bool GetLoop() => HowlAudioProxy.GetLoop(_id);
     public void SetSound(string key) => HowlAudioProxy.SetSound(_id, key);
+    public void Load() => HowlAudioProxy.Load(_id);
 }

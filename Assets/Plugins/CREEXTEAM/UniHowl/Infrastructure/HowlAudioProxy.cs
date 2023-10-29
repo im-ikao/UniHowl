@@ -20,10 +20,13 @@ public static class HowlAudioProxy
     public static bool GetMute(string sourceId) => HowlGetMute(sourceId);
     public static void SetSound(string sourceId, string path) => HowlSetSound(sourceId, path);
     public static void CreateAudio(string sourceId, string path, bool loop, float volume, bool mute, bool playOnAwake) => HowlCreateAudio(sourceId, path, loop, volume, mute, playOnAwake);
+    public static void Load(string sourceId) => HowlLoad(sourceId);
 
 
     #region JavaScript External
-    
+    [DllImport("__Internal")]
+    public static extern bool HowlLoad(string sourceId);
+
     [DllImport("__Internal")]
     public static extern bool HowlCreateAudio(string sourceId, string path, bool loop, float volume, bool mute, bool playOnAwake);
         

@@ -126,4 +126,8 @@ public class CrossplatformAudioSource : MonoBehaviour
     {
         _player.Stop();
     }
+
+    public void Load() => _player.Load();
+    public void SetGlobalMute(bool state) => _player.SetGlobalMute(state);
+    public void SetGlobalVolume(float volume) => _player.SetGlobalVolume(volume);
 }
