@@ -9,13 +9,15 @@ using UnityEngine;
 public class CrossplatformAudio
 {
     public string Key;
-    public string FolderPath;
-    public string Name;
-    public bool Preload = true;
     
 #if !UNITY_WEBGL || UNITY_EDITOR
     public AudioClip Clip;
 #endif
+    
+    public bool Preload = true;
+    
+    [HideInInspector] public string FolderPath;
+    [HideInInspector] public string Name;
     
 #if !UNITY_WEBGL || UNITY_EDITOR
     public void RefreshAudioInfo()
