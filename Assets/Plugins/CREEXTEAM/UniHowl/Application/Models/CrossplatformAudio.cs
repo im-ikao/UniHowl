@@ -35,7 +35,7 @@ namespace UniHowl
         }
 #endif
 
-//#if UNITY_WEBGL
+#if UNITY_WEBGL
         public HowlAudio ToHowlAudio()
         {
             return new HowlAudio(
@@ -44,7 +44,7 @@ namespace UniHowl
                 new AudioFolderPath(FolderPath),
                 Preload);
         }
-//#endif
+#endif
 
 #if !UNITY_WEBGL || UNITY_EDITOR
         public UnityAudio ToUnityAudio()
