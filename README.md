@@ -1,6 +1,8 @@
 # UniHowl
 UniHowl - Web Audio made be Easy, Web Audio API, Howler.js
 
+![UniHowl Cover](https://creex.team/assets/images/unihowl.jpg)
+
 I hope you find this asset as useful as I have to integrate WEB Audio API by Howler.JS to
 your Unity projects. Unity Engine is a powerful cross-platform game engine, and plugin
 allows developers to use Audio across multiple platforms, without problems
