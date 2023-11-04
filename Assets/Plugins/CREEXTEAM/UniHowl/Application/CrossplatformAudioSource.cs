@@ -1,5 +1,6 @@
 using System;
 using UniHowl.Domain;
+using UniHowl.Spatial;
 using UnityEngine;
 
 namespace UniHowl
@@ -14,7 +15,10 @@ namespace UniHowl
         [SerializeField] private bool _loop;
         [SerializeField] private bool _mute;
 
+        [SerializeField] private bool _isSpatial;
+
         private IAudioPlayer _player;
+        private ISpatialAudioSource _spatial;
 
         #region InGameChange
 
@@ -78,6 +82,12 @@ namespace UniHowl
             Init(AudioConfiguration.GetInstance()); // TODO: FOR USERS WHAT NEED DI, CAN MAKE IT BY DI
         }
 
+        private void Update()
+        {
+            if (_isSpatial == true )
+                _spatial.Update();
+        }
+
         private void Init(AudioConfiguration configuration)
         {
             // TOOD: EJECT TO STRATEGY?
@@ -88,6 +98,8 @@ namespace UniHowl
 #if UNITY_EDITOR
                 _player = new UnityAudioPlayer(configuration.Audio.ToUnityAudioMap(),
                     this.gameObject.AddComponent<AudioSource>(), _soundKey, _volume, _mute, _loop);
+
+                _spatial = new UnitySpatialPositionSource();
 #endif
 
                 return;
@@ -113,6 +125,19 @@ namespace UniHowl
                 _ => throw new ArgumentOutOfRangeException(nameof(_fallbackPlayer))
             };
 
+            if (_isSpatial)
+            {
+                _spatial = _fallbackPlayer switch
+                {
+#if UNITY_WEBGL
+                    AudioPlayers.Howl => new HowlSpatialPositionSource(this.transform),
+#endif
+#if !UNITY_WEBGL || UNITY_EDITOR
+                    AudioPlayers.Unity => new UnitySpatialPositionSource(),
+#endif
+                    _ => throw new ArgumentOutOfRangeException(nameof(_fallbackPlayer))
+                };
+            }
         }
 
         public void Play()
