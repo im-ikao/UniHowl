@@ -4,14 +4,18 @@ using UnityEngine;
 
 namespace UniHowl
 {
-    public class UnityAudioPlayer : IAudioPlayer
+    public class UnityAudioPlayer : Entity<Guid>, IAudioPlayer
     {
         private readonly AudioSource _source;
         private readonly IAudioMap<UnityAudio> _map;
+        private readonly string _id;
 
         public UnityAudioPlayer(IAudioMap<UnityAudio> map, AudioSource source, string key, float volume, bool mute,
             bool loop)
         {
+            Id = Guid.NewGuid();
+            _id = Id.ToString();
+            
             _map = map;
             _source = source;
 
@@ -98,5 +102,7 @@ namespace UniHowl
         public void Load()
         {
         }
+
+        public Guid GetId() => Id;
     }
 }

@@ -1,3 +1,5 @@
+using System;
+
 namespace UniHowl.Domain
 {
     public interface IAudioPlayer
@@ -17,5 +19,6 @@ namespace UniHowl.Domain
         public bool GetLoop();
         public void SetSound(string key);
         public void Load();
+        public Guid GetId();
     }
 }

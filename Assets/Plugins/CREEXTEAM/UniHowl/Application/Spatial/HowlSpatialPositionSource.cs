@@ -1,17 +1,23 @@
-﻿using Plugins.CREEXTEAM.UniHowl.Infrastructure;
+﻿using System;
+using Plugins.CREEXTEAM.UniHowl.Infrastructure;
 using UniHowl.Domain;
 using UnityEngine;
 
 namespace UniHowl.Spatial
 {
-    public class HowlSpatialPositionSource : ISpatialAudioSource
+    public class HowlSpatialPositionSource : Entity<Guid>, ISpatialAudioSource
     {
+        private readonly string _id;
         private readonly Transform _origin;
         private Vector3 _latestPosition;
 
-        public HowlSpatialPositionSource(Transform origin)
+        public HowlSpatialPositionSource(Guid id, Transform origin)
         {
+            Id = id;
+            _id = Id.ToString();
             _origin = origin;
+
+            HowlSpatialAudioProxy.SetPan(_id);
         }
         
         public void Update()
@@ -26,7 +32,7 @@ namespace UniHowl.Spatial
 
             _latestPosition = position;
             
-            HowlSpatialAudioProxy.HowlSetPosition(position);
+            HowlSpatialAudioProxy.SetPosition(_id, position);
         }
     }
 }

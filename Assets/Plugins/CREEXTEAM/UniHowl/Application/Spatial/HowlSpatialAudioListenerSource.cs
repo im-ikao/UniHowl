@@ -5,7 +5,7 @@ namespace UniHowl.Spatial
 {
     public class HowlSpatialAudioListenerSource : MonoBehaviour
     {
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
         private static readonly Vector3 _coordinateSystem = Vector3.up;
         private Vector3 _latestPosition;
         private Vector3 _latestRotation;
@@ -13,7 +13,7 @@ namespace UniHowl.Spatial
         public void Update()
         {
             SetPosition(transform.position);
-            SetPosition(transform.rotation.eulerAngles);
+            SetRotation(transform.rotation.eulerAngles);
         }
 
         private void SetPosition(Vector3 position)
@@ -23,7 +23,7 @@ namespace UniHowl.Spatial
 
             _latestPosition = position;
             
-            HowlSpatialAudioProxy.HowlAudioListenerSetPosition(position);
+            HowlSpatialAudioProxy.AudioListenerSetPosition(position);
         }
 
         private void SetRotation(Vector3 rotation)
@@ -33,7 +33,7 @@ namespace UniHowl.Spatial
 
             _latestPosition = rotation;
             
-            HowlSpatialAudioProxy.HowlAudioListenerSetRotation(rotation, _coordinateSystem);
+            HowlSpatialAudioProxy.AudioListenerSetRotation(rotation, _coordinateSystem);
         }
 #endif
     }

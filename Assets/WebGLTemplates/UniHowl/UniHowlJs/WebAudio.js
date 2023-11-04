@@ -162,3 +162,33 @@ function HowlGetMute(sourceId)
 
     return sourceDictionary[sourceId].mute;
 }
+
+function HowlSetPan(sourceId) {
+    if (!IsSourceExists(sourceId))
+        return; // EXCEPTION?
+
+    sourceDictionary[sourceId].pannerAttr({
+        panningModel: 'HRTF',
+        refDistance: 0.8,
+        rolloffFactor: 2.5,
+        distanceModel: 'exponential'
+    });
+}
+
+function HowlSetPosition(sourceId, x, y, z)
+{
+    if (!IsSourceExists(sourceId))
+        return; // EXCEPTION?
+
+    sourceDictionary[sourceId].pos(x,y,z);
+}
+
+function HowlAudioListenerSetPosition(x, y, z)
+{
+    Howler.pos(x, y, z);
+}
+
+function HowlAudioListenerSetRotation(x, y, z, xUp, yUp, zUp)
+{
+    Howler.orientation(x, y, z, xUp, yUp, zUp);
+}

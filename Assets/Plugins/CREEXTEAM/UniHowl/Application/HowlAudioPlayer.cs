@@ -5,6 +5,8 @@ namespace UniHowl
 {
     public sealed class HowlAudioPlayer : Entity<Guid>, IAudioPlayer
     {
+        private readonly string _id;
+        
         public HowlAudioPlayer(IAudioMap<HowlAudio> map, string key, float volume, bool mute, bool loop)
         {
             Id = Guid.NewGuid();
@@ -17,9 +19,7 @@ namespace UniHowl
 
             HowlAudioProxy.CreateAudio(_id, audio.Path.FolderPath, loop, volume, mute, false);
         }
-
-        private readonly string _id;
-
+        
         public void SetGlobalMute(bool state) => HowlAudioProxy.SetGlobalMute(state);
         public void SetGlobalVolume(float volume) => HowlAudioProxy.SetGlobalVolume(volume);
         public void SetVolume(float volume) => HowlAudioProxy.SetVolume(_id, volume);
@@ -35,5 +35,6 @@ namespace UniHowl
         public bool GetLoop() => HowlAudioProxy.GetLoop(_id);
         public void SetSound(string key) => HowlAudioProxy.SetSound(_id, key);
         public void Load() => HowlAudioProxy.Load(_id);
+        public Guid GetId() => Id;
     }
 }

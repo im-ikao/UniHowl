@@ -10,9 +10,22 @@ public class ExamplePlay : MonoBehaviour
 
     private void Start()
     {
-        Audio.Volume = 10;
+        Audio.SetGlobalMute(false);
+        Audio.SetGlobalVolume(1);
+        Audio.Volume = 1;
         Audio.Loop = true;
         Audio.Mute = false;
+        Audio.Volume = 1;
+        Audio.Load();
         Audio.Play();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Audio.Play();
+            Debug.Log("PLAY");
+        }
     }
 }
