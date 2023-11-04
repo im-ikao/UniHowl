@@ -11,10 +11,15 @@ public class ExamplePlay : MonoBehaviour
 {
     public CrossplatformSpatialAudioSource Audio;
     public BehaviourSpatialAudioSourceOptionsProvider Provider;
-    
+
+    private void Awake()
+    {
+        Provider.Scan();
+        Audio.Init(AudioConfiguration.GetInstance(), Provider);
+    }
+
     private void Start()
     {
-        Audio.Init(AudioConfiguration.GetInstance(), Provider);
         Audio.SetGlobalMute(false);
         Audio.SetGlobalVolume(1);
         Audio.Volume = 1;
