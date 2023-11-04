@@ -15,7 +15,7 @@ namespace UniHowl
 
             var audio = map.Get(key);
 
-            HowlAudioProxy.CreateAudio(_id, audio.Path.FolderPath, loop, volume, mute, false);
+            HowlAudioProxy.CreateAudio(_id, $"{audio.Path.FolderPath}\\{audio.Name.Value}", loop, volume, mute, false);
         }
 
         private readonly string _id;
