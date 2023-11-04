@@ -1,22 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Plugins.CREEXTEAM.UniHowl.Infrastructure.Providers;
 using UniHowl;
+using UniHowl.Spatial;
 using UnityEngine;
+using AudioConfiguration = UniHowl.AudioConfiguration;
 
 public class ExamplePlay : MonoBehaviour
 {
-    public CrossplatformAudioSource Audio;
-
+    public CrossplatformSpatialAudioSource Audio;
+    public BehaviourSpatialAudioSourceOptionsProvider Provider;
+    
     private void Start()
     {
+        Audio.Init(AudioConfiguration.GetInstance(), Provider);
         Audio.SetGlobalMute(false);
         Audio.SetGlobalVolume(1);
         Audio.Volume = 1;
         Audio.Loop = true;
         Audio.Mute = false;
-        Audio.Volume = 1;
-        Audio.Load();
         Audio.Play();
     }
 

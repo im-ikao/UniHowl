@@ -7,9 +7,9 @@ namespace UniHowl
     {
         private readonly string _id;
         
-        public HowlAudioPlayer(IAudioMap<HowlAudio> map, string key, float volume, bool mute, bool loop)
+        public HowlAudioPlayer(Guid id, IAudioMap<HowlAudio> map, string key, float volume, bool mute, bool loop)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             _id = Id.ToString();
 
             if (map.IsExist(key) == false)
@@ -17,7 +17,7 @@ namespace UniHowl
 
             var audio = map.Get(key);
 
-            HowlAudioProxy.CreateAudio(_id, audio.Path.FolderPath, loop, volume, mute, false);
+            HowlAudioProxy.CreateAudio(_id, $"{audio.Path.FolderPath}\\{audio.Name.Value}", loop, volume, mute, false);
         }
         
         public void SetGlobalMute(bool state) => HowlAudioProxy.SetGlobalMute(state);

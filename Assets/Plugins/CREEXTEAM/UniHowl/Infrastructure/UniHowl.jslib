@@ -114,9 +114,12 @@ mergeInto(LibraryManager.library,
             window.HowlSetSound(sourceId, clipPath);
         },
         
-         HowlSetPan: function (sourceId) {
+         HowlSetPan: function (sourceId, options) {
              sourceId = UTF8ToString(sourceId);
-             window.HowlSetPan(sourceId);
+             options = UTF8ToString(options);
+             options = JSON.parse(options);
+             
+             window.HowlSetPan(sourceId, options);
          },    
          
          HowlSetPosition: function (sourceId, x, y, z) {

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using UniHowl.Spatial.Options;
 using UnityEngine;
 
 namespace Plugins.CREEXTEAM.UniHowl.Infrastructure
 {
     public static class HowlSpatialAudioProxy
     {
-        public static void SetPan(string sourceId)
+        public static void SetPan(string sourceId, HowlSpatialAudioSourceOptions options)
         {
-            HowlSetPan(sourceId);
+            Debug.Log("pan");
+            HowlSetPan(sourceId, options.ToJson());
         }
         
         public static void SetPosition(string sourceId, Vector3 position)
@@ -29,7 +31,7 @@ namespace Plugins.CREEXTEAM.UniHowl.Infrastructure
         }
         
         [DllImport("__Internal")]
-        public static extern bool HowlSetPan(string sourceId);
+        public static extern bool HowlSetPan(string sourceId, string options);
         
         [DllImport("__Internal")]
         public static extern bool HowlSetPosition(string sourceId, float x, float y, float z);

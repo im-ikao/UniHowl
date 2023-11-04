@@ -135,8 +135,10 @@ GameObject:
   - component: {fileID: 34314488}
   - component: {fileID: 34314487}
   - component: {fileID: 34314486}
-  - component: {fileID: 34314485}
+  - component: {fileID: 34314493}
   - component: {fileID: 34314490}
+  - component: {fileID: 34314492}
+  - component: {fileID: 34314491}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -144,24 +146,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &34314485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34314484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf6883a815bbee44ebe1ec87ce83a973, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fallbackPlayer: 0
-  _soundKey: example-key
-  _volume: 1
-  _loop: 1
-  _mute: 0
-  _isSpatial: 1
 --- !u!135 &34314486
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -260,7 +244,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d62ec314ebd97498749bc2b475b2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Audio: {fileID: 34314485}
+  Audio: {fileID: 34314493}
+  Provider: {fileID: 34314492}
+--- !u!114 &34314491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34314484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c5dcacee7f4b408cfbdd3273f0284d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panningModel: 0
+  _distanceModel: 2
+  _innerAngle: 360
+  _outerAngle: 360
+  _outerGain: 0
+  _maxDistance: 1000
+  _refDistance: 0.8
+  _rolloffFactor: 2.5
+--- !u!114 &34314492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34314484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521dce7c7db84d39ac63ebadf01ee14d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &34314493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34314484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5160edd4ca4da1ae39de6120728024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fallbackPlayer: 0
+  _soundKey: example-key
+  _volume: 1
+  _loop: 1
+  _mute: 0
+  _isSpatial: 1
 --- !u!1 &1085668980
 GameObject:
   m_ObjectHideFlags: 0

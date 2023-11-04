@@ -10,10 +10,10 @@ namespace UniHowl
         private readonly IAudioMap<UnityAudio> _map;
         private readonly string _id;
 
-        public UnityAudioPlayer(IAudioMap<UnityAudio> map, AudioSource source, string key, float volume, bool mute,
+        public UnityAudioPlayer(Guid id, IAudioMap<UnityAudio> map, AudioSource source, string key, float volume, bool mute,
             bool loop)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             _id = Id.ToString();
             
             _map = map;
