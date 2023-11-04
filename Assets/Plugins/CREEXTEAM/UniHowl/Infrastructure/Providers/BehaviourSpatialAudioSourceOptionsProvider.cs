@@ -20,6 +20,9 @@ namespace Plugins.CREEXTEAM.UniHowl.Infrastructure.Providers
             var founded = this.GetComponents<IBehaviourSpatialAudioSourceOptions>();
             foreach (var found in founded)
             {
+                if (found.IsInitialized == false)
+                    found.Initialize(); // TODO: TEMPORARY
+                
                 var options = found.GetOptions();
                 if (_options.ContainsKey(options.FallbackPlayer))
                     continue;

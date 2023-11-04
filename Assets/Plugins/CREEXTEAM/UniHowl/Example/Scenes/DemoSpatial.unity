@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 34314490}
   - component: {fileID: 34314492}
   - component: {fileID: 34314491}
+  - component: {fileID: 34314494}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -296,6 +297,30 @@ MonoBehaviour:
   _loop: 1
   _mute: 0
   _isSpatial: 1
+--- !u!114 &34314494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34314484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9437eb6c20740ba8594f449d7294c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _output: {fileID: 0}
+  _bypassEffects: 0
+  _bypassListenerEffects: 0
+  _bypassReverbZones: 0
+  _stereoPan: 0
+  _spatialBlend: 1
+  _reverbZoneMix: 1
+  _dopplerLevel: 1
+  _spread: 0
+  _volumeRolloff: 1
+  _minDistance: 0
+  _maxDistance: 10
 --- !u!1 &1085668980
 GameObject:
   m_ObjectHideFlags: 0

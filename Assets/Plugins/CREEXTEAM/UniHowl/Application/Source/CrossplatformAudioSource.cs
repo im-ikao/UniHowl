@@ -44,7 +44,7 @@ namespace UniHowl
             get => _player.GetMute();
             set
             {
-                _loop = value;
+                _mute = value;
                 _player.SetMute(value);
             }
         }

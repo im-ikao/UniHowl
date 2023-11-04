@@ -29,7 +29,7 @@ namespace UniHowl.Spatial
 #if !UNITY_WEBGL || UNITY_EDITOR
             if (_isSpatial)
             {
-                _spatial = new UnitySpatialPositionSource();
+                _spatial = new UnitySpatialPositionSource(Id, this.GetComponent<AudioSource>(), optionsProvider.GetOptions<UnitySpatialAudioSourceOptions>(AudioPlayers.Unity));
                 return;
             }
 #endif
@@ -42,7 +42,7 @@ namespace UniHowl.Spatial
                     AudioPlayers.Howl => new HowlSpatialPositionSource(Id, this.transform, optionsProvider.GetOptions<HowlSpatialAudioSourceOptions>(AudioPlayers.Howl)),
 #endif
 #if !UNITY_WEBGL || UNITY_EDITOR
-                    AudioPlayers.Unity => new UnitySpatialPositionSource(),
+                    AudioPlayers.Unity => new UnitySpatialPositionSource(Id, this.GetComponent<AudioSource>(), optionsProvider.GetOptions<UnitySpatialAudioSourceOptions>(AudioPlayers.Unity)), // TODO: TEMPORARY
 #endif
                     _ => throw new ArgumentOutOfRangeException(nameof(_fallbackPlayer))
                 };

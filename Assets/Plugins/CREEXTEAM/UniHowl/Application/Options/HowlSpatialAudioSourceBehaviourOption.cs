@@ -8,9 +8,8 @@ namespace UniHowl.Spatial.Options
 {
     public class HowlSpatialAudioSourceBehaviourOption : MonoBehaviour, IBehaviourSpatialAudioSourceOptions
     {
-        [SerializeField]
-        private HowlSpatialAudioSourceOptions options;
-
+        [SerializeField] private HowlSpatialAudioSourceOptions _options;
+        
         [SerializeField] private HowlPanningMode _panningModel;
         [SerializeField] private HowlDistanceMode _distanceModel;
         [SerializeField] [Range(0, 360)] private float _innerAngle;
@@ -20,9 +19,11 @@ namespace UniHowl.Spatial.Options
         [SerializeField] private float _refDistance;
         [SerializeField] private float _rolloffFactor;
 
-        private void Awake()
+        public bool IsInitialized => _options != null; // TODO: TEMPORARY
+
+        public void Initialize()
         {
-            options = new HowlSpatialAudioSourceOptions
+            _options = new HowlSpatialAudioSourceOptions
             {
                 PanningMode = _panningModel,
                 DistanceMode = _distanceModel,
@@ -37,19 +38,19 @@ namespace UniHowl.Spatial.Options
 
         private void OnValidate()
         {
-            options.PanningMode = _panningModel;
-            options.DistanceMode = _distanceModel;
-            options.InnerAngle = _innerAngle;
-            options.OuterAngle = _outerAngle;
-            options.OuterGain = _outerGain;
-            options.MaxDistance = _maxDistance;
-            options.RefDistance = _refDistance;
-            options.RollOffFactor = _rolloffFactor;
+            _options.PanningMode = _panningModel;
+            _options.DistanceMode = _distanceModel;
+            _options.InnerAngle = _innerAngle;
+            _options.OuterAngle = _outerAngle;
+            _options.OuterGain = _outerGain;
+            _options.MaxDistance = _maxDistance;
+            _options.RefDistance = _refDistance;
+            _options.RollOffFactor = _rolloffFactor;
         }
 
         public ISpatialAudioSourceOptions GetOptions()
         {
-            return options;
+            return _options;
         }
     }
 }
