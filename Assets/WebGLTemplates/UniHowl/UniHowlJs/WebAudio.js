@@ -1,8 +1,24 @@
 ﻿const audioPath = "./StreamingAssets/Audio/";
 const sourceDictionary = {};
+const sourceSpatialDictionary = {};
+const sourcePositionDictionary = {};
 
 function IsSourceExists(sourceId) {
     if (sourceDictionary[sourceId])
+        return true;
+    else
+        return false;
+}
+
+function IsSourceSpatialOptionsExists(sourceId) {
+    if (sourceSpatialDictionary[sourceId])
+        return true;
+    else
+        return false;
+}
+
+function IsSourcePositionExists(sourceId) {
+    if (sourcePositionDictionary[sourceId])
         return true;
     else
         return false;
@@ -103,8 +119,10 @@ function HowlPlay(sourceId)
     if (!IsSourceExists(sourceId))
         return; // EXCEPTION?
 
-
     sourceDictionary[sourceId].play();
+
+    if (IsSourcePositionExists(sourceId))
+        HowlSetPosition(sourceId, sourcePositionDictionary[sourceId]);
 }
 
 function HowlGetPlayTime(sourceId)
@@ -161,4 +179,42 @@ function HowlGetMute(sourceId)
         return; // EXCEPTION?
 
     return sourceDictionary[sourceId].mute;
+}
+
+function HowlSetPan(sourceId, options) {
+    if (!IsSourceExists(sourceId))
+        return; // EXCEPTION?
+
+    sourceDictionary[sourceId].pannerAttr(options);
+    sourceSpatialDictionary[sourceId] = options;
+}
+
+function HowlSetPosition(sourceId, x, y, z)
+{
+    if (!IsSourceExists(sourceId))
+        return; // EXCEPTION?
+
+    sourcePositionDictionary[sourceId] = {
+        x: x,
+        y: y,
+        z: z
+    };
+
+    sourceDictionary[sourceId].pos(x,y,z);
+
+    if (!IsSourceSpatialOptionsExists(sourceId))
+        return; // EXCEPTION?
+
+    sourceDictionary[sourceId].pannerAttr(sourceSpatialDictionary[sourceId]);
+
+}
+
+function HowlAudioListenerSetPosition(x, y, z)
+{
+    Howler.pos(x, y, z);
+}
+
+function HowlAudioListenerSetRotation(x, y, z, xUp, yUp, zUp)
+{
+    Howler.orientation(x, y, z, xUp, yUp, zUp);
 }

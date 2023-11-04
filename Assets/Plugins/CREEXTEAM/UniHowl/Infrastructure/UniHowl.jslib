@@ -113,7 +113,28 @@ mergeInto(LibraryManager.library,
 
             window.HowlSetSound(sourceId, clipPath);
         },
+        
+         HowlSetPan: function (sourceId, options) {
+             sourceId = UTF8ToString(sourceId);
+             options = UTF8ToString(options);
+             options = JSON.parse(options);
+             
+             window.HowlSetPan(sourceId, options);
+         },    
+         
+         HowlSetPosition: function (sourceId, x, y, z) {
+             sourceId = UTF8ToString(sourceId);
+ 
+             window.HowlSetPosition(sourceId, x, y, z);
+         },       
 
+        HowlAudioListenerSetPosition: function (x, y, z) {
+            window.HowlAudioListenerSetPosition(x, y, z);
+        },
+        
+        HowlAudioListenerSetRotation: function (x, y, z, xUp, yUp, zUp) {
+            window.HowlAudioListenerSetRotation(x, y, z, xUp, yUp, zUp);
+        },
     }
 );
 
