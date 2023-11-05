@@ -24,6 +24,9 @@ namespace UniHowl
         
         [SerializeField] 
         private bool _mute;
+
+        [SerializeField]
+        private bool _autoInit;
         
         private IAudioPlayer _player;
 
@@ -83,6 +86,17 @@ namespace UniHowl
             SoundKey = _soundKey;
         }
 #endif
+
+        private void Awake()
+        {
+            if (_autoInit == true)
+                AutoInitialize();
+        }
+
+        protected virtual void AutoInitialize()
+        {
+            Init(AudioConfiguration.GetInstance());
+        }
 
         public void Init(AudioConfiguration configuration)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Plugins.CREEXTEAM.UniHowl.Infrastructure.Providers;
 using UniHowl.Domain;
 using UniHowl.Spatial.Options;
 using UnityEngine;
@@ -12,13 +13,18 @@ namespace UniHowl.Spatial
         
         private ISpatialAudioSource _spatial;
         private ISpatialAudioSourceOptions _options;
-
+        
         // TODO: HIDE UNSUPPORTED INIT
 
         private void Update()
         {
             if (_isSpatial && _spatial != null)
                 _spatial.Update();
+        }
+
+        protected override void AutoInitialize()
+        {
+            Init(AudioConfiguration.GetInstance(), GetComponent<BehaviourSpatialAudioSourceOptionsProvider>());
         }
 
         public void Init(AudioConfiguration configuration,
