@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 
 namespace UniHowl.Spatial.Options
 {
+#if !UNITY_WEBGL || UNITY_EDITOR
     public class UnitySpatialAudioSourceBehaviourOption : MonoBehaviour, IBehaviourSpatialAudioSourceOptions
     {
         private UnitySpatialAudioSourceOptions _options;
@@ -75,4 +76,6 @@ namespace UniHowl.Spatial.Options
             return _options;
         }
     }
+
+#endif
 }

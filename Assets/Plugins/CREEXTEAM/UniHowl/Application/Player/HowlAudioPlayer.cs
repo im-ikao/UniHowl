@@ -3,6 +3,7 @@ using UniHowl.Domain;
 
 namespace UniHowl
 {
+    #if UNITY_WEBGL && !UNITY_EDITOR
     public sealed class HowlAudioPlayer : Entity<Guid>, IAudioPlayer
     {
         private readonly string _id;
@@ -37,4 +38,5 @@ namespace UniHowl
         public void Load() => HowlAudioProxy.Load(_id);
         public Guid GetId() => Id;
     }
+    #endif
 }

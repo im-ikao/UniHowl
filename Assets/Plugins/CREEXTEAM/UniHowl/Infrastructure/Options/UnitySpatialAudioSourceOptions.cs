@@ -4,6 +4,7 @@ using UnityEngine.Audio;
 
 namespace UniHowl.Spatial.Options
 {
+#if !UNITY_WEBGL || UNITY_EDITOR
     public class UnitySpatialAudioSourceOptions : ISpatialAudioSourceOptions
     {
         /// <summary>
@@ -28,4 +29,5 @@ namespace UniHowl.Spatial.Options
         public float MinDistance = 1;
         public float MaxDistance = 500;
     }
+#endif
 }

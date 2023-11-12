@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace UniHowl.Spatial
 {
+#if UNITY_WEBGL && !UNITY_EDITOR
     public class HowlSpatialAudioListenerSource : MonoBehaviour
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
         private static readonly Vector3 _coordinateSystem = Vector3.up;
         private Vector3 _latestPosition;
         private Vector3 _latestRotation;
@@ -35,6 +35,6 @@ namespace UniHowl.Spatial
             
             HowlSpatialAudioProxy.AudioListenerSetRotation(rotation, _coordinateSystem);
         }
-#endif
     }
+#endif
 }

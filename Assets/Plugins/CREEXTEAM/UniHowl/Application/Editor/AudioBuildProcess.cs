@@ -6,9 +6,7 @@ using UnityEngine;
 
 namespace UniHowl
 {
-// TODO: REFACTOR
-    namespace UniHowl
-    {
+#if UNITY_WEBGL && UNITY_EDITOR
         public static class AudioBuildProcess
         {
             [PostProcessBuild(int.MinValue)]
@@ -75,5 +73,5 @@ namespace UniHowl
                 }
             }
         }
-    }
+    #endif
 }

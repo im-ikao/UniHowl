@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
+#if UNITY_WEBGL && !UNITY_EDITOR
 public static class HowlAudioProxy
 {
     public static void SetGlobalMute(bool state) => HowlGlobalMute(state);
@@ -73,5 +74,6 @@ public static class HowlAudioProxy
     public static extern bool HowlGetMute(string soundSourceId);
     
     #endregion
-
 }
+
+#endif

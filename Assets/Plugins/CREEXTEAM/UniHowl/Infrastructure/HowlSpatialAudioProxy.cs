@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Plugins.CREEXTEAM.UniHowl.Infrastructure
 {
+#if UNITY_WEBGL && !UNITY_EDITOR
     public static class HowlSpatialAudioProxy
     {
         public static void SetPan(string sourceId, HowlSpatialAudioSourceOptions options)
@@ -40,4 +41,5 @@ namespace Plugins.CREEXTEAM.UniHowl.Infrastructure
         public static extern bool HowlAudioListenerSetRotation(float x, float y, float z, float xUp, float yUp, float zUp);
         
     }
+    #endif
 }

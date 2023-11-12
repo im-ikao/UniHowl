@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace UniHowl
 {
+#if !UNITY_WEBGL || UNITY_EDITOR
     public class UnityAudioPlayer : Entity<Guid>, IAudioPlayer
     {
         private readonly AudioSource _source;
@@ -105,4 +106,5 @@ namespace UniHowl
 
         public Guid GetId() => Id;
     }
+#endif
 }

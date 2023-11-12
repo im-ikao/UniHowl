@@ -3,6 +3,7 @@ using UniHowl.Spatial.Options;
 
 namespace Plugins.CREEXTEAM.UniHowl.Infrastructure.Dto
 {
+#if UNITY_WEBGL || UNITY_EDITOR
     // Why this strange object?
     // I wouldn’t want to drag along a custom serializer, and in order not to constantly create garbage,
     // we created such a wrapper to json object
@@ -80,4 +81,5 @@ namespace Plugins.CREEXTEAM.UniHowl.Infrastructure.Dto
             };
         }
     }
+    #endif
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace UniHowl.Spatial.Options
 {
+#if UNITY_WEBGL || UNITY_EDITOR
     // Why is not inherited from some universal class?
     // Because in cross-platform games we can sacrifice some features for the sake of performance or platform support
     [Serializable]
@@ -123,7 +124,7 @@ namespace UniHowl.Spatial.Options
         
         public string ToJson() => JsonUtility.ToJson(_wrapper);
     }
-    
+#endif
     public enum HowlDistanceMode
     {
             Linear,

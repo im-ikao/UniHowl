@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace UniHowl.Spatial
 {
+#if UNITY_WEBGL && !UNITY_EDITOR
     public class HowlSpatialPositionSource : Entity<Guid>, ISpatialAudioSource
     {
         private readonly string _id;
@@ -50,4 +51,5 @@ namespace UniHowl.Spatial
             HowlSpatialAudioProxy.SetPosition(_id, position);
         }
     }
+#endif
 }

@@ -115,7 +115,7 @@ namespace UniHowl
 
             _player = _fallbackPlayer switch
             {
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
                 AudioPlayers.Howl => new HowlAudioPlayer(Id, configuration.Audio.ToHowlAudioMap(),
                     _soundKey,
                     _volume,

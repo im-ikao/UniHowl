@@ -44,7 +44,7 @@ namespace UniHowl.Spatial
             {
                 _spatial = _fallbackPlayer switch
                 {
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
                     AudioPlayers.Howl => new HowlSpatialPositionSource(Id, this.transform, optionsProvider.GetOptions<HowlSpatialAudioSourceOptions>(AudioPlayers.Howl)),
 #endif
 #if !UNITY_WEBGL || UNITY_EDITOR

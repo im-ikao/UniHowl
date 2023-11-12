@@ -12,7 +12,7 @@ namespace UniHowl
     {
         [SerializeField] private List<CrossplatformAudio> _audio = new();
 
-//#if UNITY_WEBGL
+#if UNITY_WEBGL
         public IAudioMap<HowlAudio> ToHowlAudioMap()
         {
             var map = new HowlAudioMap();
@@ -24,7 +24,7 @@ namespace UniHowl
 
             return map;
         }
-//#endif
+#endif
 
 #if !UNITY_WEBGL || UNITY_EDITOR
         public IAudioMap<UnityAudio> ToUnityAudioMap()

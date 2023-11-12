@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
 
 namespace UniHowl.Spatial.Options
 {
+    
+#if UNITY_WEBGL || UNITY_EDITOR
     public class HowlSpatialAudioSourceBehaviourOption : MonoBehaviour, IBehaviourSpatialAudioSourceOptions
     {
         [SerializeField] private HowlSpatialAudioSourceOptions _options;
@@ -38,7 +40,6 @@ namespace UniHowl.Spatial.Options
                 refDistance: _refDistance,
                 rollOffFactor: _rolloffFactor);
         }
-#if UNITY_EDITOR
         private void OnValidate()
         {
             _options.PanningMode = _panningModel;
@@ -50,10 +51,12 @@ namespace UniHowl.Spatial.Options
             _options.RefDistance = _refDistance;
             _options.RollOffFactor = _rolloffFactor;
         }
-#endif
+
         public ISpatialAudioSourceOptions GetOptions()
         {
             return _options;
         }
     }
+    
+#endif
 }
