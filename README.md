@@ -50,7 +50,8 @@ and audio be work
 WebGL Template, and inject JS files to your html as this code: 
 
 ```js
- <script type="text/javascript" src="./UniHowlJs/howler.min.js"></script> 
+ <script type="text/javascript" src="./UniHowlJs/howler.min.js"></script>
+ <script type="text/javascript" src="./UniHowlJs/howler.spatial.min.js"></script>
  <script type="text/javascript" src="./UniHowlJs/WebAudio.js"></script>
 ```
 
