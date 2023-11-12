@@ -21,11 +21,15 @@ namespace UniHowl.Spatial
             _id = Id.ToString();
             _origin = origin;
             _options = options;
-
-            RefreshOptions();
-            SetPosition(_origin.position);
         }
 
+        public void Initialize()
+        {
+            RefreshOptions();
+            HowlSpatialAudioProxy.SetPosition(_id, _origin.position);
+        }
+        
+        
         public void RefreshOptions()
         {
             HowlSpatialAudioProxy.SetPan(_id, _options);

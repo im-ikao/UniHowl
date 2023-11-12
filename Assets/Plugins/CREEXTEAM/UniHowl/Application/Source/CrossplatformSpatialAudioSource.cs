@@ -31,7 +31,7 @@ namespace UniHowl.Spatial
             ISpatialAudioSourceOptionsProvider optionsProvider)
         {
             base.Init(configuration);
-                     
+            
 #if !UNITY_WEBGL || UNITY_EDITOR
             if (_isSpatial)
             {
@@ -53,8 +53,9 @@ namespace UniHowl.Spatial
                     _ => throw new ArgumentOutOfRangeException(nameof(_fallbackPlayer))
                 };
             }
-            
-            Debug.Log("ok");
+
+            if (_isSpatial)
+                _spatial.Initialize(); 
         }
     }
 }

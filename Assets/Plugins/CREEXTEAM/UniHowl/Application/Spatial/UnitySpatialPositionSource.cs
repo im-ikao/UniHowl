@@ -16,9 +16,13 @@ namespace UniHowl.Spatial
             _options = options;
             
             Id = id;
-            RefreshOptions();
         }
 
+        public void Initialize()
+        {
+            RefreshOptions();
+        }
+        
         public void RefreshOptions()
         {
             _source.outputAudioMixerGroup = _options.Output;

@@ -8,11 +8,13 @@ namespace UniHowl
     {
         private const string _path = "Assets/Resources";
         private const string _name = "AudioConfiguration";
-
-        [SerializeField] private bool _debug = true;
+        
+        [SerializeField] 
+        private bool _debug = true;
         public bool Debug => _debug;
 
-        [SerializeField] private CrossplatformAudioMap _audio;
+        [SerializeField] 
+        private CrossplatformAudioMap _audio;
         public CrossplatformAudioMap Audio => _audio;
 
         private static AudioConfiguration _instance;

@@ -9,19 +9,16 @@ namespace Plugins.CREEXTEAM.UniHowl.Infrastructure
     {
         public static void SetPan(string sourceId, HowlSpatialAudioSourceOptions options)
         {
-            Debug.Log("pan");
             HowlSetPan(sourceId, options.ToJson());
         }
         
         public static void SetPosition(string sourceId, Vector3 position)
         {
-            Debug.Log($"{position.x},{position.y}, {position.z}");
             HowlSetPosition(sourceId, position.x, position.y, position.z);
         }
         
         public static void AudioListenerSetPosition(Vector3 position)
         {
-            Debug.Log($"{position.x},{position.y}, {position.z}");
             HowlAudioListenerSetPosition(position.x, position.y, position.z);
         }
 

@@ -20,22 +20,22 @@ namespace UniHowl.Spatial.Options
         [SerializeField] private float _rolloffFactor;
 
         public bool IsInitialized => _options != null; // TODO: TEMPORARY
-
+        
         public void Initialize()
         {
-            _options = new HowlSpatialAudioSourceOptions
-            {
-                PanningMode = _panningModel,
-                DistanceMode = _distanceModel,
-                InnerAngle = _innerAngle,
-                OuterAngle = _outerAngle,
-                OuterGain = _outerGain,
-                MaxDistance = _maxDistance,
-                RefDistance = _refDistance,
-                RollOffFactor = _rolloffFactor
-            };
+            if (_options != null)
+                return;
+            
+            _options = new HowlSpatialAudioSourceOptions(panningMode: _panningModel,
+                distanceMode: _distanceModel,
+                innerAngle: _innerAngle, 
+                outerAngle: _outerAngle, 
+                outerGain: _outerGain,
+                maxDistance: _maxDistance,
+                refDistance: _refDistance,
+                rollOffFactor: _rolloffFactor);
         }
-
+#if UNITY_EDITOR
         private void OnValidate()
         {
             _options.PanningMode = _panningModel;
@@ -47,7 +47,7 @@ namespace UniHowl.Spatial.Options
             _options.RefDistance = _refDistance;
             _options.RollOffFactor = _rolloffFactor;
         }
-
+#endif
         public ISpatialAudioSourceOptions GetOptions()
         {
             return _options;

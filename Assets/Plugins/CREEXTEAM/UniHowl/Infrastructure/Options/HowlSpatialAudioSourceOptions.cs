@@ -10,16 +10,33 @@ namespace UniHowl.Spatial.Options
     [Serializable]
     public class HowlSpatialAudioSourceOptions : ISpatialAudioSourceOptions
     {
-        private HowlerSpatialAudioSourceOptionsWrapper _wrapper = new(
-            HowlPanningMode.HRTF, 
-            HowlDistanceMode.Exponential, 
-            360, 
-            360, 
-            0, 
-            10000,
-            1, 
-            1);
-        
+        public HowlSpatialAudioSourceOptions()
+        {
+            _wrapper = new HowlerSpatialAudioSourceOptionsWrapper(
+                HowlPanningMode.HRTF, 
+                HowlDistanceMode.Exponential, 
+                360, 
+                360, 
+                0, 
+                10000,
+                1, 
+                1);
+        }
+
+        private HowlerSpatialAudioSourceOptionsWrapper _wrapper;
+
+        public HowlSpatialAudioSourceOptions(HowlPanningMode panningMode, HowlDistanceMode distanceMode, float innerAngle, float outerAngle, float outerGain, float maxDistance, float refDistance, float rollOffFactor) : this()
+        {
+            PanningMode = panningMode;
+            DistanceMode = distanceMode;
+            InnerAngle = innerAngle;
+            OuterAngle = outerAngle;
+            OuterGain = outerGain;
+            MaxDistance = maxDistance;
+            RefDistance = refDistance;
+            RollOffFactor = rollOffFactor;
+        }
+
         /// <summary>
         /// ENUM TO CLASS CONVERT FIELD;
         /// </summary>

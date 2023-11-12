@@ -30,7 +30,10 @@ namespace UniHowl.Spatial.Options
         
         public void Initialize()
         {
-            _options = new UnitySpatialAudioSourceOptions()
+             if (_options != null)
+                 return;
+             
+             _options = new UnitySpatialAudioSourceOptions()
             {
                 Output = _output,
                 BypassEffects = _bypassEffects,
@@ -46,7 +49,7 @@ namespace UniHowl.Spatial.Options
                 MaxDistance = _maxDistance
             };
         }
-
+#if UNITY_EDITOR
         public void OnValidate()
         {
             if (_options == null)
@@ -65,10 +68,10 @@ namespace UniHowl.Spatial.Options
             _options.MinDistance = _minDistance;
             _options.MaxDistance = _maxDistance;
         }
-
+#endif
+        
         public ISpatialAudioSourceOptions GetOptions()
         {
-            Debug.Log("unity:" + JsonUtility.ToJson(_options));
             return _options;
         }
     }

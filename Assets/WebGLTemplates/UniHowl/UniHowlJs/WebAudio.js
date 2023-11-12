@@ -182,23 +182,24 @@ function HowlGetMute(sourceId)
 }
 
 function HowlSetPan(sourceId, options) {
+    sourceSpatialDictionary[sourceId] = options;
+
     if (!IsSourceExists(sourceId))
         return; // EXCEPTION?
 
     sourceDictionary[sourceId].pannerAttr(options);
-    sourceSpatialDictionary[sourceId] = options;
 }
 
 function HowlSetPosition(sourceId, x, y, z)
 {
-    if (!IsSourceExists(sourceId))
-        return; // EXCEPTION?
-
     sourcePositionDictionary[sourceId] = {
         x: x,
         y: y,
         z: z
     };
+
+    if (!IsSourceExists(sourceId))
+        return; // EXCEPTION?
 
     sourceDictionary[sourceId].pos(x,y,z);
 

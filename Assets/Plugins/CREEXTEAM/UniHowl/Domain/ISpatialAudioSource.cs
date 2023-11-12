@@ -6,6 +6,7 @@ namespace UniHowl.Domain
     {
         public void RefreshOptions();
         public void Update();
+        public void Initialize();
         public void SetPosition(Vector3 position);
     }
 }

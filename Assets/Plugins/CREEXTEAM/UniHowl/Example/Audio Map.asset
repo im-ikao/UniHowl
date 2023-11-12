@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audio:
   - Key: example-key
-    Clip: {fileID: 8300000, guid: 06d2b2cc5f6cd1e499755e24e3915d4c, type: 3}
+    Clip: {fileID: 8300000, guid: a5db82da9d7eac04399ec7f388bd06c7, type: 3}
     Preload: 1
     FolderPath: Plugins\CREEXTEAM\UniHowl\Example\Audio\
-    Name: Example.ogg
+    Name: Example-2.mp3

@@ -8,7 +8,7 @@ namespace Plugins.CREEXTEAM.UniHowl.Infrastructure.Providers
 {
     public class BehaviourSpatialAudioSourceOptionsProvider : MonoBehaviour, ISpatialAudioSourceOptionsProvider
     {
-        private Dictionary<AudioPlayers, ISpatialAudioSourceOptions> _options = new();
+        private readonly Dictionary<AudioPlayers, ISpatialAudioSourceOptions> _options = new Dictionary<AudioPlayers, ISpatialAudioSourceOptions>();
 
         private void Awake()
         {
@@ -20,6 +20,9 @@ namespace Plugins.CREEXTEAM.UniHowl.Infrastructure.Providers
             var founded = this.GetComponents<IBehaviourSpatialAudioSourceOptions>();
             foreach (var found in founded)
             {
+                if (found == null)
+                    return;
+                
                 if (found.IsInitialized == false)
                     found.Initialize(); // TODO: TEMPORARY
                 
