@@ -19,12 +19,15 @@ namespace UniHowl.Spatial.Options
         [SerializeField] private float _refDistance;
         [SerializeField] private float _rolloffFactor;
 
-        public bool IsInitialized => _options != null; // TODO: TEMPORARY
-        
+        private bool _isInitialized = false;
+        public bool IsInitialized => _isInitialized; // TODO: TEMPORARY
+
         public void Initialize()
         {
-            if (_options != null)
+            if (_isInitialized == true)
                 return;
+            
+            _isInitialized = true;
             
             _options = new HowlSpatialAudioSourceOptions(panningMode: _panningModel,
                 distanceMode: _distanceModel,

@@ -264,7 +264,7 @@ MonoBehaviour:
   _distanceModel: 2
   _innerAngle: 90
   _outerAngle: 180
-  _outerGain: 0
+  _outerGain: 0.1
   _maxDistance: 25
   _refDistance: 0.8
   _rolloffFactor: 2.5
