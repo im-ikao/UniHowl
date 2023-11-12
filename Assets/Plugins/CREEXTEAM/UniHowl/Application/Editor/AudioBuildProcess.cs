@@ -23,8 +23,12 @@ namespace UniHowl
                 var map = configuration.Audio;
                 var howlerMap = map.ToHowlAudioMap();
 
-                var audioFolder = "StreamingAssets/Audio";
-                Directory.Delete(pathToBuildProject + "/" + audioFolder, true);
+                var audioFolder = "StreamingAssets\\Audio";
+                var fullAudioPath = pathToBuildProject + "/" + audioFolder;
+                if (Directory.Exists(fullAudioPath) == true)
+                {
+                    Directory.Delete(fullAudioPath, true);
+                }
 
                 CreateFolder(pathToBuildProject, audioFolder);
 
